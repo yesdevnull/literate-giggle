@@ -91,7 +91,7 @@ async function moveFile(octokit, params) {
   );
 
   // Create a new tree with the deletion and creation entries.
-  // No create-blob call is issued — this is the pure-move optimisation.
+  // No create-blob call is issued — this is the pure-move optimization.
   const { data: tree } = await octokit.rest.git.createTree({
     owner,
     repo,

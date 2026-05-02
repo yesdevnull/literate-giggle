@@ -72,6 +72,7 @@ describe('moveFile', () => {
     return {
       rest: {
         git: {
+          createBlob: jest.fn(),
           createTree: jest.fn().mockResolvedValue({ data: { sha: createTreeSha } }),
           createCommit: jest.fn().mockResolvedValue({ data: { sha: createCommitSha } }),
         },
@@ -94,8 +95,8 @@ describe('moveFile', () => {
     });
 
     // Pure move — createBlob must NOT have been called.
+    expect(octokit.rest.git.createBlob).not.toHaveBeenCalled();
     expect(octokit.rest.git.createTree).toHaveBeenCalledTimes(1);
-    expect(octokit.rest.git).not.toHaveProperty('createBlob');
 
     const [callArgs] = octokit.rest.git.createTree.mock.calls;
     expect(callArgs[0]).toMatchObject({
@@ -173,6 +174,7 @@ describe('moveFile', () => {
     const octokit = {
       rest: {
         git: {
+          createBlob: jest.fn(),
           createTree: jest.fn().mockRejectedValue(new Error('API rate limit')),
           createCommit: jest.fn(),
         },
