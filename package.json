@@ -1,0 +1,12 @@
+{
+  "name": "literate-giggle",
+  "version": "1.0.0",
+  "description": "Smoke test for GitHub Trees API pure-move (blob SHA reuse, no create-blob step)",
+  "main": "src/moveFile.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
